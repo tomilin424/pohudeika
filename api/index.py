@@ -9,15 +9,21 @@ from pathlib import Path
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(root_dir))
 
-from webapp import app as webapp
-from database import init_db
+# Создаем FastAPI приложение
+app = FastAPI()
 
-# Инициализируем базу данных
-init_db()
-
-# Настраиваем статические файлы и шаблоны для Vercel
-webapp.mount("/static", StaticFiles(directory=str(root_dir / "web/static")), name="static")
+# Настраиваем статические файлы и шаблоны
+app.mount("/static", StaticFiles(directory=str(root_dir / "web/static")), name="static")
 templates = Jinja2Templates(directory=str(root_dir / "web/templates"))
 
-# Экспортируем приложение для Vercel
-app = webapp 
+@app.get("/")
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/webapp")
+async def webapp(request: Request):
+    return templates.TemplateResponse("webapp.html", {"request": request})
+
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok"} 

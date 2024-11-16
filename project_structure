@@ -13,28 +13,10 @@ fitness_bot/
 │       ├── base.html
 │       ├── index.html
 │       ├── users.html
-│       ├── webapp.html
-│       └── stats.html
-├── config/
-│   └── config.py
-├── database/
-│   ├── __init__.py
-│   └── models.py
-├── handlers/
-│   ├── __init__.py
-│   ├── registration.py
-│   ├── nutrition.py
-│   ├── workout.py
-│   └── subscription.py
-├── services/
-│   ├── __init__.py
-│   ├── calculator.py
-│   ├── nutrition_service.py
-│   └── workout_service.py
-├── utils/
-│   ├── __init__.py
-│   └── helpers.py
+│       └── webapp.html
 ├── .gitignore
 ├── vercel.json
+├── vercel.sh
 ├── requirements.txt
-└── webapp.py 
+├── vercel_requirements.txt
+└── api/index.py 
