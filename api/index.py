@@ -2,15 +2,13 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
-import sys
 from pathlib import Path
-
-# Добавляем корневую директорию в путь для импортов
-root_dir = Path(__file__).resolve().parent.parent
-sys.path.append(str(root_dir))
 
 # Создаем FastAPI приложение
 app = FastAPI()
+
+# Получаем путь к корневой директории
+root_dir = Path(__file__).resolve().parent.parent
 
 # Настраиваем статические файлы и шаблоны
 app.mount("/static", StaticFiles(directory=str(root_dir / "web/static")), name="static")
@@ -26,4 +24,7 @@ async def webapp(request: Request):
 
 @app.get("/api/health")
 async def health_check():
-    return {"status": "ok"} 
+    return {
+        "status": "ok",
+        "bot_token": os.getenv("BOT_TOKEN", "Not set")
+    } 
