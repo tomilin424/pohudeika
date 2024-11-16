@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Статус бота</h5>
+                <p class="card-text">
+                    Статус: <span class="badge bg-success" id="bot-status">Работает</span><br>
+                    Время работы: <span id="uptime">0 часов</span><br>
+                    Активных пользователей: <span id="active-users">0</span>
+                </p>
+                <button class="btn btn-primary" onclick="restartBot()">Перезапустить бота</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Последние действия</h5>
+                <div class="log-container" id="log-container">
+                    <!-- Логи будут добавляться здесь -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
